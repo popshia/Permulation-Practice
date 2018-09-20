@@ -25,7 +25,7 @@ void Print( vector<int> dataBase, int functionN ) {
 
 vector<int> Rotate( vector<int> tempData, int times, int digit, int functionN ) {
     int tempInt = tempData[times] ;
-    for( int move = times ; move > digit ; move -- ) tempData[move] = tempData[move - 1] ;
+    for( int move = times ; move > digit ; move -- ) tempData[move] = tempData[move-1] ;
     tempData[digit] = tempInt ;
     return tempData ;
 } // Rotate()
@@ -64,6 +64,34 @@ void GivenN() {
     
     Perm( dataBase, 0, TwoN) ;
 } // GivenN()
+
+vector<int> Plus( vector<int> tempData ) {
+    tempData[ tempData.size() - 1 ] = tempData.back() ++ ;
+    return tempData;
+} // Plus()
+
+void GivenLength( vector<int> dataBase, int layer ) {
+    if ( layer != ThreeN - 1 ) {
+        for ( int digit = 0 ; digit <= ThreeN ; digit++ ) {
+            dataBase[layer] = dataBase[layer] + digit ;
+            
+            for ( int time = layer ; time < ThreeN ; time ++ ) {
+                dataBase[time+1] = dataBase[time] + 1 ;
+            } // for()
+            
+            GivenLength( dataBase, layer + 1 );
+        } // for
+    } // if()
+    
+    else if( layer == ThreeN - 1 ) {
+        Perm( dataBase, 0, ThreeN) ;
+        
+        while ( dataBase[layer] < 9 ) {
+            dataBase[layer] ++ ;
+            Perm( dataBase, 0, ThreeN) ;
+        } // while()
+    } // if()
+} //GivenLength()
 
 int main( int argc, const char * argv[] ) {
     int command = 0 ;
@@ -131,7 +159,9 @@ int main( int argc, const char * argv[] ) {
                 cin >> ThreeN ;
             } // while()
             
-            // GivenLength() ;
+            vector<int> dataBase;
+            for ( int i = 1 ; i <= ThreeN ; i ++ ) dataBase.push_back(i);
+            GivenLength( dataBase, 0 ) ;
         } // if()
         
         cout << "Do you want to practice again? (Y/N)" << endl ;
