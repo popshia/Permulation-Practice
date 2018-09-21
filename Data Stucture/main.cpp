@@ -65,21 +65,20 @@ void GivenN() {
     Perm( dataBase, 0, TwoN) ;
 } // GivenN()
 
-vector<int> Plus( vector<int> tempData ) {
-    tempData[ tempData.size() - 1 ] = tempData.back() ++ ;
-    return tempData;
-} // Plus()
-
-void GivenLength( vector<int> dataBase, int layer ) {
+void GivenLength( vector<int> & dataBase, int layer ) {
     if ( layer != ThreeN - 1 ) {
-        for ( int digit = 0 ; digit <= ThreeN ; digit++ ) {
-            dataBase[layer] = dataBase[layer] + digit ;
-            
+        for ( int digit = 0 ; digit <= 9-ThreeN ; digit++ ) {
+            cout << dataBase[layer] << " " << dataBase[layer+1] << endl ;
+            if ( dataBase[layer+1] == 9 ) dataBase[layer] ++ ;
             for ( int time = layer ; time < ThreeN ; time ++ ) {
                 dataBase[time+1] = dataBase[time] + 1 ;
             } // for()
             
-            GivenLength( dataBase, layer + 1 );
+            GivenLength( dataBase, layer + 1 ) ;
+            if ( dataBase[layer] == dataBase[layer+1] - 1 ) {
+                layer -- ;
+                cout << "jump backwards" << endl ;
+            } // if()
         } // for
     } // if()
     
@@ -160,7 +159,7 @@ int main( int argc, const char * argv[] ) {
             } // while()
             
             vector<int> dataBase;
-            for ( int i = 1 ; i <= ThreeN ; i ++ ) dataBase.push_back(i);
+            for ( int i = 1 ; i <= ThreeN ; i ++ ) dataBase.push_back(i) ;
             GivenLength( dataBase, 0 ) ;
         } // if()
         
