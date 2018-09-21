@@ -14,6 +14,7 @@ static int TwoN = 0 ;
 static int ThreeN = 0 ;
 static int Count = 0 ;
 static int Number = 1 ;
+static bool jump = false ;
 
 void Print( vector<int> dataBase, int functionN ) {
     cout << "[" << Number << "] : " ;
@@ -67,19 +68,22 @@ void GivenN() {
 
 void GivenLength( vector<int> & dataBase, int layer ) {
     if ( layer != ThreeN - 1 ) {
-        for ( int digit = 0 ; digit <= 9-ThreeN ; digit++ ) {
+        while ( dataBase[0] < 10 - ThreeN ) {
             cout << dataBase[layer] << " " << dataBase[layer+1] << endl ;
-            if ( dataBase[layer+1] == 9 ) dataBase[layer] ++ ;
+            if ( jump == true || dataBase[layer+1] == 9 ) dataBase[layer] ++ ;
             for ( int time = layer ; time < ThreeN ; time ++ ) {
                 dataBase[time+1] = dataBase[time] + 1 ;
             } // for()
             
+            jump = false ;
             GivenLength( dataBase, layer + 1 ) ;
+   
             if ( dataBase[layer] == dataBase[layer+1] - 1 ) {
                 layer -- ;
+                jump = true ;
                 cout << "jump backwards" << endl ;
             } // if()
-        } // for
+        } // while()
     } // if()
     
     else if( layer == ThreeN - 1 ) {
