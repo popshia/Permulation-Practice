@@ -68,20 +68,21 @@ void GivenN() {
 
 void GivenLength( vector<int> & dataBase, int layer ) {
     if ( layer != ThreeN - 1 ) {
-        while ( dataBase[0] < 10 - ThreeN ) {
+        while ( dataBase[0] <= 10 - ThreeN ) {
             cout << dataBase[layer] << " " << dataBase[layer+1] << endl ;
             if ( jump == true || dataBase[layer+1] == 9 ) dataBase[layer] ++ ;
+            
             for ( int time = layer ; time < ThreeN ; time ++ ) {
                 dataBase[time+1] = dataBase[time] + 1 ;
             } // for()
-            
+                
             jump = false ;
             GivenLength( dataBase, layer + 1 ) ;
    
             if ( dataBase[layer] == dataBase[layer+1] - 1 ) {
                 layer -- ;
                 jump = true ;
-                cout << "jump backwards" << endl ;
+                // cout << "jump backwards" << endl ;
             } // if()
         } // while()
     } // if()
