@@ -69,30 +69,24 @@ void GivenN() {
 void GivenLength( vector<int> & dataBase, int layer ) {
     if ( layer != ThreeN - 1 ) {
         while ( dataBase[0] <= 10 - ThreeN ) {
-
-              while ( dataBase[layer] > layer + 10- ThreeN && layer > 0 ) { // 位數往上
-                layer--;
-                dataBase[layer]++;
-                for ( int time = layer ; time < ThreeN ; time ++ )
-                  dataBase[time+1] = dataBase[time] + 1 ;
-                  cout << "layer:" << layer << endl;
+              while ( dataBase[layer] > layer + 10 - ThreeN && layer > 0 ) { // 位數往上
+                layer -- ;
+                dataBase[layer] ++ ;
+                for ( int time = layer ; time < ThreeN ; time ++ ) dataBase[time+1] = dataBase[time] + 1 ;
               } // while
 
               GivenLength( dataBase, layer + 1 ) ;
-
-              dataBase[layer]++;
-              for ( int time = layer ; time < ThreeN ; time ++ )
-                  dataBase[time+1] = dataBase[time] + 1 ;
-
+              dataBase[layer] ++ ;
+              for ( int time = layer ; time < ThreeN ; time ++ ) dataBase[time+1] = dataBase[time] + 1 ;
         } // while()
     } // if()
 
     else if( layer == ThreeN - 1 ) {
-        Perm( dataBase, 0, ThreeN) ;
+        Perm( dataBase, 0, ThreeN ) ;
 
         while ( dataBase[layer] < 9 ) {
             dataBase[layer] ++ ;
-            Perm( dataBase, 0, ThreeN) ;
+            Perm( dataBase, 0, ThreeN ) ;
         } // while()
     } // if()
 } //GivenLength()
