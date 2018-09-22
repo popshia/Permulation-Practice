@@ -14,7 +14,6 @@ static int TwoN = 0 ;
 static int ThreeN = 0 ;
 static int Count = 0 ;
 static int Number = 1 ;
-static bool jump = false ;
 
 void Print( vector<int> dataBase, int functionN ) {
     cout << "[" << Number << "] : " ;
