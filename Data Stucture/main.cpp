@@ -1,3 +1,4 @@
+// 10627130 資工二甲 林冠良 & 10627131 資工二甲 李峻瑋
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
