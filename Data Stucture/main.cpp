@@ -69,11 +69,11 @@ void GivenN() {
 
 void GivenLength( vector<int> & dataBase, int layer ) {
     if ( layer != ThreeN - 1 ) {
-        while ( dataBase[0] <= 10 - ThreeN ) {
+        while ( dataBase[0] <= 10 - ThreeN ) { // this god damn while took us two days !!!
               while ( dataBase[layer] > layer + 10 - ThreeN && layer > 0 ) {
                 layer -- ; // jump back a layer
                 dataBase[layer] ++ ; // increase the current layer
-                for ( int time = layer ; time < ThreeN ; time ++ ) dataBase[time+1] = dataBase[time] + 1 ; // set up after increase the current layer
+                for ( int time = layer ; time < ThreeN ; time ++ ) dataBase[time+1] = dataBase[time] + 1 ; // set up the data after the current layer
               } // while
 
               GivenLength( dataBase, layer + 1 ) ; // recursion
@@ -82,7 +82,7 @@ void GivenLength( vector<int> & dataBase, int layer ) {
         } // while()
     } // if()
 
-    else if( layer == ThreeN - 1 ) { // after you arrived at the last layer
+    else if( layer == ThreeN - 1 ) { // arrived at the last layer
         Perm( dataBase, 0, ThreeN ) ; // perm it
 
         while ( dataBase[layer] < 9 ) {
