@@ -41,7 +41,8 @@ void Perm( vector<int> dataBase, int digit, int functionN ) { // find out the ra
     } // if()
 
     else {
-        Print( dataBase, functionN ) ; // after the rank has find out, print it out
+        Count ++ ;
+        // Print( dataBase, functionN ) ; // after the rank has find out, print it out
     } // else()
 } // Perm()
 
@@ -63,8 +64,8 @@ void GivenN() {
         cin >> elements ; // read what user input
         dataBase.push_back( elements ) ; // push it back one by one
     } // for()
-// print out the time
-    Perm( dataBase, 0, TwoN) ; // perm it
+    // print out the time
+    Perm( dataBase, 0, TwoN ) ; // perm it
 } // GivenN()
 
 void GivenLength( vector<int> & dataBase, int layer ) {
@@ -120,10 +121,10 @@ int main( int argc, const char * argv[] ) {
         } // if()
 
         if ( command == 1 ) { // function one
-            cout << "Please enter your N ( 1~9 ) :" << endl ;
+            cout << "Please enter your N ( 1~12 ) :" << endl ;
             cin >> OneN ; // read in the N
 
-            while ( OneN <= 0 || OneN > 9 ) { // wrong N situation
+            while ( OneN <= 0 || OneN > 13 ) { // wrong N situation
                 cout << "Error N! please enter an acceptable N :" << endl ;
                 cin >> OneN ;
             } // while()
@@ -135,10 +136,10 @@ int main( int argc, const char * argv[] ) {
             cout << "Time = " << time * 1000 / CLOCKS_PER_SEC << " ms" << endl ; // print out the time
         } // if()
         else if ( command == 2 ) { // function two
-            cout << "Please enter your N ( 1~9 ) :" << endl ;
+            cout << "Please enter your N ( 1~12 ) :" << endl ;
             cin >> TwoN ; // read in the N
 
-            while ( TwoN <= 0 || TwoN > 9 ) { // wrong N situation
+            while ( TwoN < 1 || TwoN > 13 ) { // wrong N situation
                 cout << "Error N! please enter an acceptable N :" << endl ;
                 cin >> TwoN ;
             } // while()
@@ -150,10 +151,10 @@ int main( int argc, const char * argv[] ) {
             cout << "Time = " << time * 1000 / CLOCKS_PER_SEC << " ms" << endl ; // print out the time
         } // if()
         else if ( command == 3 ) { // function two
-            cout << "Please enter your N ( 1~9 ) :" << endl ;
+            cout << "Please enter your N ( 1~12 ) :" << endl ;
             cin >> ThreeN ; // read in the N
 
-            while ( ThreeN <= 0 || ThreeN > 9 ) { // wrong N situation
+            while ( ThreeN <= 0 || ThreeN > 13 ) { // wrong N situation
                 cout << "Error N! please enter an acceptable N :" << endl ;
                 cin >> ThreeN ;
             } // while()
