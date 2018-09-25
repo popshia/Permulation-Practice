@@ -15,6 +15,7 @@ static int TwoN = 0 ;
 static int ThreeN = 0 ;
 static int Count = 0 ;
 static int Number = 1 ;
+static int Range = 0 ;
 
 void Print( vector<int> dataBase, int functionN ) { // print out the dataBase
     cout << "[" << Number << "] : " ;
@@ -32,7 +33,7 @@ vector<int> Rotate( vector<int> tempData, int times, int digit, int functionN ) 
 } // Rotate()
 
 void Perm( vector<int> dataBase, int digit, int functionN ) { // find out the rank of the given dataBase
-    if (  digit < functionN ) {
+    if ( digit < functionN ) {
         for ( int times = digit ; times < functionN ; times ++ ) {
             vector<int> tempData ; // create a temporary dataBase
             tempData.assign( dataBase.begin(), dataBase.end() ) ; // copy the current dataBase to the temporary one
@@ -41,8 +42,8 @@ void Perm( vector<int> dataBase, int digit, int functionN ) { // find out the ra
     } // if()
 
     else {
-        Count ++ ;
-        // Print( dataBase, functionN ) ; // after the rank has find out, print it out
+        // Count ++ ;
+        Print( dataBase, functionN ) ; // after the rank has find out, print it out
     } // else()
 } // Perm()
 
@@ -58,11 +59,25 @@ void LesserThan() {
 void GivenN() {
     vector<int> dataBase ;
     int elements = 0 ;
+    bool same = false ;
     cout << "Please enter " << TwoN << " element(s)" << endl ;
 
     for ( int i = 0 ; i < TwoN ; i ++ ) {
         cin >> elements ; // read what user input
-        dataBase.push_back( elements ) ; // push it back one by one
+        
+        for ( int j = 0 ; j < dataBase.size() ; j++ ) {
+            if ( elements == dataBase[j] ) same = true ;
+        } // for()
+        
+        if ( same ) {
+            // i -- ;
+            cout << "You had already enter this number! Try again!" << endl ;
+            cin >> elements ;
+            dataBase.push_back(elements) ;
+        } // if()
+        
+        else dataBase.push_back(elements) ; // push it back one by one
+        same = false ;
     } // for()
     // print out the time
     Perm( dataBase, 0, TwoN ) ; // perm it
@@ -70,8 +85,8 @@ void GivenN() {
 
 void GivenLength( vector<int> & dataBase, int layer ) {
     if ( layer != ThreeN - 1 ) {
-        while ( dataBase[0] <= 10 - ThreeN ) { // this god damn while took us two days !!!
-              while ( dataBase[layer] > layer + 10 - ThreeN && layer > 0 ) {
+        while ( dataBase[0] <= Range + 1 - ThreeN ) { // this god damn while took us two days !!!
+              while ( dataBase[layer] > layer + Range + 1 - ThreeN && layer > 0 ) {
                 layer -- ; // jump back a layer
                 dataBase[layer] ++ ; // increase the current layer
                 for ( int time = layer ; time < ThreeN ; time ++ ) dataBase[time+1] = dataBase[time] + 1 ; // set up the data after the current layer
@@ -86,7 +101,7 @@ void GivenLength( vector<int> & dataBase, int layer ) {
     else if( layer == ThreeN - 1 ) { // arrived at the last layer
         Perm( dataBase, 0, ThreeN ) ; // perm it
 
-        while ( dataBase[layer] < 9 ) {
+        while ( dataBase[layer] < Range ) {
             dataBase[layer] ++ ; // and increase the last element in the dataBase
             Perm( dataBase, 0, ThreeN ) ; // perm it again
         } // while()
@@ -136,10 +151,10 @@ int main( int argc, const char * argv[] ) {
             cout << "Time = " << time * 1000 / CLOCKS_PER_SEC << " ms" << endl ; // print out the time
         } // if()
         else if ( command == 2 ) { // function two
-            cout << "Please enter your N ( 1~12 ) :" << endl ;
+            cout << "Please enter your N ( 2~12 ) :" << endl ;
             cin >> TwoN ; // read in the N
 
-            while ( TwoN < 1 || TwoN > 13 ) { // wrong N situation
+            while ( TwoN < 2 || TwoN > 13 ) { // wrong N situation
                 cout << "Error N! please enter an acceptable N :" << endl ;
                 cin >> TwoN ;
             } // while()
@@ -153,6 +168,8 @@ int main( int argc, const char * argv[] ) {
         else if ( command == 3 ) { // function two
             cout << "Please enter your N ( 1~12 ) :" << endl ;
             cin >> ThreeN ; // read in the N
+            cout << "Please enter your range :" << endl ;
+            cin >> Range ;
 
             while ( ThreeN <= 0 || ThreeN > 13 ) { // wrong N situation
                 cout << "Error N! please enter an acceptable N :" << endl ;
